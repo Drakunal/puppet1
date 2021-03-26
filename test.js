@@ -125,6 +125,7 @@ const puppeteer = require('puppeteer');
   // const bankName= await page.$('#contract_applications_forms_contract_application_form_banking_attributes_bank_name');
   // await bankName.type(bank_name);
 
+  // await page.waitForTimeout(4000);
   //selection
   var income_source=process.env.income_source;
   const incomeSource= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_income_source');
@@ -138,6 +139,25 @@ const puppeteer = require('puppeteer');
   var monthly_income=process.env.monthly_income;
   const monthlyIncome= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_monthly_net');
   await monthlyIncome.type(monthly_income);
+
+
+  // var often_paid=process.env.often_paid;
+  // const oftenPaid= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_schedule_frequency_twice_a_month');
+  // await oftenPaid.click();
+  
+  await Promise.all([
+   
+    await page.click("#remember", {clickCount:1}), //first checkbox
+    await   page.waitForSelector('#contract_applications_forms_contract_application_form_contract_details_attributes_consent_to_automated_communications')
+
+    // await page.click('a.btn.btn-lg.btn-primary');
+    // await   page.waitForNavigation()
+     
+   
+
+  ]);
+  
+  await page.click("#contract_applications_forms_contract_application_form_contract_details_attributes_consent_to_automated_communications", {clickCount:1});
   
   await page.screenshot({ path: 'example.png' });
   // await browser.close();
