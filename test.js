@@ -1,3 +1,4 @@
+require('dotenv').config()
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -34,7 +35,7 @@ const puppeteer = require('puppeteer');
 
   //form input
 
-  var first_name="hi";
+  var first_name=process.env.first_name;
   const firstName= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_first_name');
   await firstName.type(first_name);
   
