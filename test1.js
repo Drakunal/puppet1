@@ -67,6 +67,7 @@ const puppeteer = require('puppeteer');
     
     var dob_dob = process.env.dob;
     const dobDob = await page.$('#dateOfBirth');
+    await dobDob.click({clickCount:3})
     await dobDob.type(dob_dob);
     
     var ssn_itin = process.env.ssn_itin;
@@ -113,6 +114,17 @@ const puppeteer = require('puppeteer');
     var employer_phone_number = process.env.employer_phone_number;
     const employerPhoneNumber = await page.$('#employerPhoneNumber');
     await employerPhoneNumber.type(employer_phone_number);
+    
+    
+
+    var next_pay_date = process.env.next_pay_date;
+    const nextPayDate = await page.$('#paidOnDate');
+    await nextPayDate.type(next_pay_date);
+
+
+    var last_paid_amount = process.env.last_paid_amount;
+    const lastPaidAmount = await page.$('#paidAmount');
+    await lastPaidAmount.type(last_paid_amount);
     
   
     
