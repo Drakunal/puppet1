@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
     });
     const page = await browser.newPage();
 
-    await page.goto('https://app.kornerstonecredit.com/Apply/ella_furniture', {
+    await page.goto('https://apply.kornerstonecredit.com/new?r=14814', {
         "waitUntil": "networkidle0"
     });
 
@@ -142,6 +142,11 @@ const puppeteer = require('puppeteer');
     await referencePhoneNumber.type(reference_phone_number);
 
 
+    var e_signature = process.env.e_signature;
+    const eSignature = await page.$('#eSignature');
+    await eSignature.type(e_signature);
+
+    
     
   
 
