@@ -102,42 +102,99 @@ const puppeteer = require('puppeteer');
     
       ]);
 
-
+      
 
       // !next page
+      
+      var street_address=process.env.street_address;
+      const streetAddress= await page.$('#StreetAddress');
+      await streetAddress.type(street_address);
+
+      var apt_number=process.env.apt_number;
+      const aptNumber= await page.$('#AddressLineTwo');
+      await aptNumber.type(apt_number);
+
+
+      var zip_code=process.env.zip_code;
+      const zipCode= await page.$('#ZipCode');
+      await zipCode.type(zip_code);
+
+      var city_name=process.env.city_name;
+      const cityName= await page.$('#City');
+      await cityName.type(city_name);
+
+
+      //process.env.residence_type_id
+
+      var residence_type_id="1";
+      const residenceTypeId= await page.$('#ResidenceTypeId');
+      await residenceTypeId.select(residence_type_id);
+
+
 
     //   var confirm_ssn=process.env.confirm_ssn;
     //   const confirmSsn= await page.$('#identification_number_confirmation');
     //   await confirmSsn.type(ssn_itin);
 
+      var mobile_number=process.env.mobile_number;
+      const mobileNumber= await page.$('#CellPhone');
+      await mobileNumber.type(mobile_number);
+      
+
     //   var mobile_number=process.env.mobile_number;
-    //   const mobileNumber= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_primary_phone_number');
-    //   await mobileNumber.type(mobile_number);
+      const homePhoneNumber= await page.$('#HomePhone');
+      await homePhoneNumber.type(mobile_number);
 
-    //   var street_address=process.env.street_address;
-    //   const streetAddress= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_street_address');
-    //   await streetAddress.type(street_address);
+      var email_id=process.env.email_id;
+      const emailId= await page.$('#Email');
+      await emailId.type(email_id);
 
-    //   var apt_number=process.env.apt_number;
-    //   const aptNumber= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_autofill_selected_secondary_address');
-    //   await aptNumber.type(apt_number);
+      const confirmEmailId= await page.$('#ConfirmEmail');
+      await confirmEmailId.type(email_id);
 
-    //   var city_name=process.env.city_name;
-    //   const cityName= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_city');
-    //   await cityName.type(city_name);
+
+
+      await Promise.all([
+   
+        await page.click("#submit-button", {clickCount:1}), //first checkbox
+        await   page.waitForNavigation()
+    
+        // await page.click('a.btn.btn-lg.btn-primary');
+        // await   page.waitForNavigation()
+         
+       
+    
+      ]);
+
+
+      // !next page
+
+
+    //   await Promise.all([
+   
+        // await page.click("#IsSameAsCellPhone", {clickCount:1}), //first checkbox
+        // await   page.waitForNavigation()
+    
+        // await page.click('a.btn.btn-lg.btn-primary');
+        // await   page.waitForNavigation()
+         
+       
+    
+    //   ]);
+
+
+    
+
+    
+    
 
     //   var state_code=process.env.state_code;
     //   const stateCode= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_state_code');
     //   await stateCode.type(state_code);
 
-    //   var zip_code=process.env.zip_code;
-    //   const zipCode= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_zip_code');
-    //   await zipCode.type(zip_code);
+      
 
-    //   var email_id=process.env.email_id;
-    //   const emailId= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_email');
-    //   await emailId.type(email_id);
-
+    
     //   var dob_month=process.env.dob_month;
     //   const dobMonth= await page.$('#contract_applications_forms_contract_application_form_applicant_identity_attributes_date_of_birth_month');
     //   await dobMonth.type(dob_month);
