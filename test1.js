@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
     });
     const page = await browser.newPage();
 
-    await page.goto('https://apply.kornerstonecredit.com/new?r=14814', {
+    await page.goto('https://app.kornerstonecredit.com/Apply/ella_furniture', {
         "waitUntil": "networkidle0"
     });
 
@@ -81,6 +81,9 @@ const puppeteer = require('puppeteer');
     // var id_state = process.env.id_state;
     // const idState = await page.$('#idState');
     // await idState.type(id_state);
+    // await page.waitForTimeout(4000);
+    await page.select('select#idState','id_state')
+    // await page.waitForTimeout(4000);
 
     // await   page.waitForSelector('state')
 
