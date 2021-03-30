@@ -15,15 +15,17 @@ const puppeteer = require('puppeteer');
      
 
   ]);
-
-  await Promise.all([
+  // await page.waitForSelector('button.mat-focus-indicator.continue-button.mat-flat-button.mat-button-base.mat-primary');
+  // await Promise.all([
    
-    await  page.click('button.mat-focus-indicator.continue-button.mat-flat-button.mat-button-base.mat-primary.ng-star-inserted'),
-    await   page.waitForNavigation()
+  //   await  page.click('button.mat-focus-indicator.continue-button.mat-flat-button.mat-button-base.mat-primary'),
+  //   await   page.waitForNavigation()
 
      
 
-  ]);
+  // ]);
+  await page.waitForTimeout(2000);
+  await   page.waitForNavigation();
 //   await Promise.all([
    
 //     await page.click('a.btn.btn-lg.btn-primary'), //NEXT
@@ -36,22 +38,93 @@ const puppeteer = require('puppeteer');
 
 //   ]);
 
-//   await Promise.all([
-//   await page.click('a.btn.btn-lg.btn-primary'),
-//   await   page.waitForNavigation()
-// ]);
+
 
 
 //   //form input
 
-//   var first_name=process.env.first_name;
-//   const firstName= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_first_name');
-//   await firstName.type(first_name);
+  var first_name=process.env.first_name;
+  const firstName= await page.$('#firstName');
+  await firstName.type(first_name);
   
 
-//   var last_name=process.env.last_name;
-//   const lastName= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_last_name');
-//   await lastName.type(last_name);
+  var last_name=process.env.last_name;
+  const lastName= await page.$('#lastName');
+  await lastName.type(last_name);
+
+  var mobile_number=process.env.mobile_number;
+  const mobileNumber= await page.$('#mobilePhoneNumber');
+  await mobileNumber.type(mobile_number);
+
+  var email_id=process.env.email_id;
+  const emailId= await page.$('#emailAddress');
+  await emailId.type(email_id);
+
+  await Promise.all([
+    await page.click('#submitbtn'),
+    await   page.waitForNavigation()
+  ]);
+
+  // next page
+  await page.waitForTimeout(360000);//360 seconds to enter the otp and press verify
+  await   page.waitForNavigation();
+  //after mobile otp verification
+
+  var street_address=process.env.street_address;
+  const streetAddress= await page.$('#homeAddress');
+  await streetAddress.type(street_address);
+
+  var zip_code=process.env.zip_code;
+  const zipCode= await page.$('#zipCode');
+  await zipCode.type(zip_code);
+
+  var apt_number=process.env.apt_number;
+  const aptNumber= await page.$('#apartment/suite');
+  await aptNumber.type(apt_number);
+
+
+  var rent_or_own=process.env.rent_or_own;
+  if(rent_or_own=="rent"){
+    // const rent= await page.$('#apartment/suite');
+    await page.click('#rentbtn');
+
+  }
+  else if(rent_or_own=="own"){
+    // const own= await page.$('#apartment/suite');
+    await page.click('#ownbtn');
+
+  }
+
+
+  var years_lived_in_address=process.env.years_lived_in_address;
+  if(years_lived_in_address=="0")// for less than  1 years
+  {
+    // const rent= await page.$('#apartment/suite');
+    await page.click('#lessthanonebtn');
+
+  }
+  else if(years_lived_in_address>="1"&&years_lived_in_address<"3")//greater than =1 and less than 3
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#onetothreebtn');
+
+  }
+
+  else if(years_lived_in_address>="3"&&years_lived_in_address<"5")//greater than =3 and less than 5
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#threetofivebtn');
+
+  }
+  else if(years_lived_in_address>="5")//greater than =5
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#fiveormorebtn');
+
+  }
+  
+
+
 
 //   var ssn_itin=process.env.ssn_itin;
 //   const ssnItin= await page.$('#contract_applications_forms_contract_application_form_applicant_identity_attributes_identification_number');
@@ -61,17 +134,9 @@ const puppeteer = require('puppeteer');
 //   const confirmSsn= await page.$('#identification_number_confirmation');
 //   await confirmSsn.type(ssn_itin);
 
-//   var mobile_number=process.env.mobile_number;
-//   const mobileNumber= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_primary_phone_number');
-//   await mobileNumber.type(mobile_number);
 
-//   var street_address=process.env.street_address;
-//   const streetAddress= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_street_address');
-//   await streetAddress.type(street_address);
 
-//   var apt_number=process.env.apt_number;
-//   const aptNumber= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_autofill_selected_secondary_address');
-//   await aptNumber.type(apt_number);
+
 
 //   var city_name=process.env.city_name;
 //   const cityName= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_city');
@@ -81,13 +146,9 @@ const puppeteer = require('puppeteer');
 //   const stateCode= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_state_code');
 //   await stateCode.type(state_code);
 
-//   var zip_code=process.env.zip_code;
-//   const zipCode= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_zip_code');
-//   await zipCode.type(zip_code);
 
-//   var email_id=process.env.email_id;
-//   const emailId= await page.$('#contract_applications_forms_contract_application_form_applicant_information_attributes_email');
-//   await emailId.type(email_id);
+
+
 
 //   var dob_month=process.env.dob_month;
 //   const dobMonth= await page.$('#contract_applications_forms_contract_application_form_applicant_identity_attributes_date_of_birth_month');
