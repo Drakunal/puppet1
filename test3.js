@@ -170,7 +170,118 @@ const puppeteer = require('puppeteer');
       // !next page
 
       
+      //income details step 3 of 5
 
+
+
+      var income_type=process.env.income_type;
+      const incomeType= await page.$('#IncomeTypeId');
+    //   await incomeType.type(income_type);
+      await incomeType.select(income_type);
+      
+      
+if(income_type=="1"||income_type=="2"){ // if employeed full time or part time
+     var employer_name=process.env.employer_name;
+      const incomeType= await page.$('#employer');
+      await incomeType.type(employer_name);
+
+
+}
+
+
+
+        var employment_start_date=process.env.employment_start_date;
+        const employmentStartDate= await page.$('#EmploymentStartDate');
+        await employmentStartDate.click({
+            clickCount: 3
+        })
+        await employmentStartDate.type(employment_start_date);
+
+
+
+      var monthly_income=process.env.monthly_income;
+      const monthlyIncome= await page.$('#MonthlyIncome');
+      await monthlyIncome.type(monthly_income);
+
+      
+      
+
+      var often_paid=process.env.often_paid;
+      const oftenPaid= await page.$('#PaymentFrequencyId');
+    //   await incomeType.type(income_type);
+      await oftenPaid.select(often_paid);
+      
+
+      var last_pay_date=process.env.last_pay_date;
+      const lastPayDate= await page.$('#LastPaydate');
+      await lastPayDate.click({
+        clickCount: 3
+    })
+      await lastPayDate.type(last_pay_date);
+
+      await page.waitForTimeout(20000);
+      await Promise.all([
+   
+        await page.click("#submit-button", {clickCount:1}), //first checkbox
+        await   page.waitForNavigation()
+    
+        // await page.click('a.btn.btn-lg.btn-primary');
+        // await   page.waitForNavigation()
+         
+       
+    
+      ]); // when  next is clicked manually
+
+
+      //! next page 4
+
+
+      
+      var bank_routing_number=process.env.bank_routing_number;
+      const bankRoutingNumber= await page.$('#RoutingNumber');
+      await bankRoutingNumber.type(bank_routing_number);
+
+
+      
+      var bank_account_number=process.env.bank_account_number;
+      const bankAccountNumber= await page.$('#AccountNumber');
+      await bankAccountNumber.type(bank_account_number);
+
+
+      var bank_name=process.env.bank_name;
+      const bankName= await page.$('#BankingInstitution');
+      await bankName.type(bank_name);
+
+
+      
+
+
+      var account_open_date=process.env.account_open_date;
+      const accountOpenDate= await page.$('#AccountOpenDate');
+      await accountOpenDate.click({
+        clickCount: 3
+    })
+      await accountOpenDate.type(account_open_date);
+
+
+
+      await Promise.all([
+   
+        await page.click("#submit-button", {clickCount:1}), //first checkbox
+        await   page.waitForNavigation()
+    
+        // await page.click('a.btn.btn-lg.btn-primary');
+        // await   page.waitForNavigation()
+         
+       
+    
+      ]);
+
+
+      //! next page, page 5
+
+
+    //   await incomeType.select(income_type);
 
     //   await Promise.all([
    
@@ -225,17 +336,8 @@ const puppeteer = require('puppeteer');
 
 
 
-    //   var bank_routing_number=process.env.bank_routing_number;
-    //   const bankRoutingNumber= await page.$('#contract_applications_forms_contract_application_form_banking_attributes_routing_number');
-    //   await bankRoutingNumber.type(bank_routing_number);
 
-    //   var bank_account_number=process.env.bank_account_number;
-    //   const bankAccountNumber= await page.$('#contract_applications_forms_contract_application_form_banking_attributes_account_number');
-    //   await bankAccountNumber.type(bank_account_number);
-
-    //   // var bank_name=process.env.bank_name;
-    //   // const bankName= await page.$('#contract_applications_forms_contract_application_form_banking_attributes_bank_name');
-    //   // await bankName.type(bank_name);
+      
 
     //   // await page.waitForTimeout(4000);
     //   //selection
@@ -248,9 +350,7 @@ const puppeteer = require('puppeteer');
     //   const paymentMethod= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_payment_method');
     //   await paymentMethod.type(payment_method);
 
-    //   var monthly_income=process.env.monthly_income;
-    //   const monthlyIncome= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_monthly_net');
-    //   await monthlyIncome.type(monthly_income);
+   
 
 
     //   // var often_paid=process.env.often_paid;
