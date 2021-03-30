@@ -264,6 +264,37 @@ if(income_type=="1"||income_type=="2"){ // if employeed full time or part time
       await accountOpenDate.type(account_open_date);
 
 
+      await page.waitForTimeout(15000);
+      await Promise.all([
+   
+        await page.click("#submit-button", {clickCount:1}), //first checkbox
+        await   page.waitForNavigation()
+    
+        // await page.click('a.btn.btn-lg.btn-primary');
+        // await   page.waitForNavigation()
+         
+       
+    
+      ]);
+      //getting error
+
+
+      //! next page, page 5
+
+
+      var card_number=process.env.card_number;
+      const cardNumber= await page.$('#CardNumber');
+      await cardNumber.type(card_number);
+      
+      
+
+      var expiration_date=process.env.expiration_date;
+      const expirationDate= await page.$('#ExpirationDate');
+      await expirationDate.click({
+        clickCount: 3
+    })
+      await expirationDate.type(expiration_date);
+
 
       await Promise.all([
    
@@ -276,10 +307,6 @@ if(income_type=="1"||income_type=="2"){ // if employeed full time or part time
        
     
       ]);
-
-
-      //! next page, page 5
-
 
     //   await incomeType.select(income_type);
 
