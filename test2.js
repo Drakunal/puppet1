@@ -66,7 +66,7 @@ const puppeteer = require('puppeteer');
   ]);
 
   // next page
-  await page.waitForTimeout(60000);//360 seconds to enter the otp and press verify
+  await page.waitForTimeout(50000);//50 seconds to enter the otp and press verify
   await Promise.all([
     await page.click('#submitbtn'),
     await   page.waitForNavigation()
@@ -256,13 +256,13 @@ const puppeteer = require('puppeteer');
   }
 
 
-  var monthly_income=process.env.monthly_income;
-  const monthlyIncome= await page.$('Paycheck Amount');
-  await monthlyIncome.type(monthly_income);
+  // var monthly_income=process.env.monthly_income;
+  // const monthlyIncome= await page.$('input.mat-input-element.mat-form-field-autofill-control.ng-tns-c24-17.cdk-text-field-autofill-monitored.ng-dirty.ng-valid.ng-touched');
+  // await monthlyIncome.type(monthly_income);
 
 
 
-  await page.waitForTimeout(10000);
+  await page.waitForTimeout(15000);
   await Promise.all([
     await page.click('#submitbtn'),
     await   page.waitForNavigation()
@@ -273,14 +273,14 @@ const puppeteer = require('puppeteer');
 
 
 
-  await Promise.all([
+  // await Promise.all([
    
-    await page.click("#remember", {clickCount:1}), //first checkbox
-    await   page.waitForSelector('#mat-checkbox-1-input')
+  //   await page.click("#mat-checkbox-1-input", {clickCount:1}), //first checkbox
+  //   await   page.waitForSelector('#mat-checkbox-2-input')
 
-  ]);
+  // ]);
   
-  await page.click("#mat-checkbox-2-input", {clickCount:1});
+  // await page.click("#mat-checkbox-2-input", {clickCount:1});
   
 
 
