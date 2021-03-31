@@ -264,7 +264,7 @@ if(income_type=="1"||income_type=="2"){ // if employeed full time or part time
       await accountOpenDate.type(account_open_date);
 
 
-      await page.waitForTimeout(15000);
+      await page.waitForTimeout(15000); // 15 seconds for entering all details
       await Promise.all([
    
         await page.click("#submit-button", {clickCount:1}), //first checkbox
