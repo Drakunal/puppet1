@@ -193,15 +193,100 @@ const puppeteer = require('puppeteer');
 
   // next page income
 
+  var income_type=process.env.income_type;
+  if(income_type=="1"){
+    await page.click('#fulltimebtn');
+  }
+  else if(income_type=="2"){
+    await page.click('#parttimebtn');
+
+  }else if(income_type=="3"){
+    await page.click('#selfemployedbtn');
+    
+
+  }else if(income_type=="4"){
+    await page.click('#benefitsbtn');
+
+  }else if(income_type=="5"){
+    await page.click('#otherbtn');
+
+  }
+
+  if(income_type=="1"||income_type=="2"||income_type=="3")
+  {
+    var company_name=process.env.company_name;
+    const companyName= await page.$('#companyName');
+    await companyName.type(company_name);
+  
+    
+  
+    var job_title=process.env.job_title;
+    const jobTitle= await page.$('#jobTitle');
+    await jobTitle.type(job_title);
+  
+  }
+
+
+
+  var years_worked=process.env.years_worked;
+  if(years_worked=="0")// for less than  1 years
+  {
+    // const rent= await page.$('#apartment/suite');
+    await page.click('#incomelessthanone');
+
+  }
+  else if(years_worked>="1"&&years_worked<"3")//greater than =1 and less than 3
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#incomeonetothree');
+
+  }
+
+  else if(years_worked>="3"&&years_worked<"5")//greater than =3 and less than 5
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#incomethreetofive');
+
+  }
+  else if(years_worked>="5")//greater than =5
+  {
+    // const own= await page.$('#apartment/suite');
+    await page.click('#incomefiveormore');
+
+  }
+
+
+  var monthly_income=process.env.monthly_income;
+  const monthlyIncome= await page.$('Paycheck Amount');
+  await monthlyIncome.type(monthly_income);
+
+
+
+  await page.waitForTimeout(10000);
+  await Promise.all([
+    await page.click('#submitbtn'),
+    await   page.waitForNavigation()
+  ]);
+  
+  
+  
+
+
+
+  await Promise.all([
+   
+    await page.click("#remember", {clickCount:1}), //first checkbox
+    await   page.waitForSelector('#mat-checkbox-1-input')
+
+  ]);
+  
+  await page.click("#mat-checkbox-2-input", {clickCount:1});
   
 
 
 
 
-//   var confirm_ssn=process.env.confirm_ssn;
-//   const confirmSsn= await page.$('#identification_number_confirmation');
-//   await confirmSsn.type(ssn_itin);
-
+ 
 
 
 
@@ -266,9 +351,7 @@ const puppeteer = require('puppeteer');
 
 
 
-//   var monthly_income=process.env.monthly_income;
-//   const monthlyIncome= await page.$('#contract_applications_forms_contract_application_form_applicant_primary_income_attributes_monthly_net');
-//   await monthlyIncome.type(monthly_income);
+
 
 
 //   // var often_paid=process.env.often_paid;
