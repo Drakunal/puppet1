@@ -160,5 +160,6 @@ const puppeteer = require('puppeteer');
   await page.click("#contract_applications_forms_contract_application_form_contract_details_attributes_consent_to_automated_communications", {clickCount:1});
   
   await page.screenshot({ path: 'example.png' });
+  
   // await browser.close();
 })();

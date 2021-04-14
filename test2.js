@@ -66,7 +66,7 @@ const puppeteer = require('puppeteer');
   ]);
 
   // next page
-  await page.waitForTimeout(50000);//50 seconds to enter the otp and press verify
+  await page.waitForTimeout(40000);//40 seconds to enter the otp and press verify
   await Promise.all([
     await page.click('#submitbtn'),
     await   page.waitForNavigation()
@@ -152,7 +152,7 @@ const puppeteer = require('puppeteer');
   const ssnItin= await page.$('#socialSecurityNumberOrItin');
   await ssnItin.type(ssn_itin);
 
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(10000);
 
 
   await Promise.all([
