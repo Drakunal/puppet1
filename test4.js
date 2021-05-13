@@ -12,11 +12,16 @@ const puppeteer = require('puppeteer');
     });
 
     // await   page.waitForNavigation();
-    await page.waitForTimeout(5000);
-    await   page.waitForNavigation();
+    // await page.waitForTimeout(5000);
     // await   page.waitForNavigation();
-    await page.click("#agreeTC", {clickCount:1}), //first checkbox
+    // await   page.waitForNavigation();
+    // await page.click("#agreeTC", {clickCount:1}), //first checkbox
     
+    //apply now button
+    await Promise.all([
+        await page.click('#btn-content-apply'),
+        await   page.waitForNavigation()
+    ]);
 //     //   await Promise.all([
 
 //     //     await page.click('a.btn.btn-lg.btn-primary'), //NEXT
