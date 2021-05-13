@@ -1,6 +1,6 @@
 require('dotenv').config()
 const puppeteer = require('puppeteer');
-
+//acima
 (async () => {
   const browser = await puppeteer.launch({headless:false});
   const page = await browser.newPage();

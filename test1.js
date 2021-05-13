@@ -1,6 +1,6 @@
 require('dotenv').config()
 const puppeteer = require('puppeteer');
-
+//kornerstone
 (async () => {
     const browser = await puppeteer.launch({
         headless: false
