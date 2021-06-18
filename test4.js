@@ -8,20 +8,35 @@ const puppeteer = require('puppeteer');
     const page = await browser.newPage();
 
     await page.goto('https://approve.me/s/ellafurniture/87581#/marketing', {
-        "waitUntil": "networkidle0"
+        "waitUntil": "load"
     });
+    // page.waitForNavigation();
+    // await page.waitForTimeout(10000);
+    //apply now button
+    await Promise.all([
+         
+        await page.click('#btn-content-apply'),
+        await   page.waitForNavigation()
+    ]);
 
+    //agree terms and conditions checkbox
+    // await page.click("#agreeTC", {clickCount:1}); //checkbox
+    // await page.waitForTimeout(2000);
+    // // //continue button
+    // await Promise.all([
+    //     await page.click('#continue'),
+    //     await   page.waitForNavigation()
+    // ]);
+    
+    await page.waitForTimeout(3000);
+    // console.log("HI");
     // await   page.waitForNavigation();
     // await page.waitForTimeout(5000);
     // await   page.waitForNavigation();
     // await   page.waitForNavigation();
-    // await page.click("#agreeTC", {clickCount:1}), //first checkbox
     
-    //apply now button
-    await Promise.all([
-        await page.click('#btn-content-apply'),
-        await   page.waitForNavigation()
-    ]);
+    
+    
 //     //   await Promise.all([
 
 //     //     await page.click('a.btn.btn-lg.btn-primary'), //NEXT
@@ -43,44 +58,106 @@ const puppeteer = require('puppeteer');
 //     //   //form input
     
 
-//     var first_name = process.env.first_name;
-//     const firstName = await page.$('#FirstName');
-//     await firstName.type(first_name);
+    var first_name = process.env.first_name;
+    const firstName = await page.$('#Customer_FirstName');
+    await firstName.type(first_name);
 
 //     var middle_name = process.env.middle_name;
 //     const middleName = await page.$('#MiddleName');
 //     await middleName.type(middle_name);
 
-//     var last_name = process.env.last_name;
-//     const lastName = await page.$('#LastName');
-//     await lastName.type(last_name);
+    var last_name = process.env.last_name;
+    const lastName = await page.$('#Customer_LastName');
+    await lastName.type(last_name);
 
 //     // await waitForSelector('#IdNumber');
 
-//     var ssn_itin = process.env.ssn_itin;
-//     const ssnItin = await page.$('#IndividualNumberMasked');
-//     await ssnItin.click({
-//         clickCount: 3
-//     })
-//     await ssnItin.type(ssn_itin);
+
+
+    var dob_dob = process.env.dob;
+    const dobDob = await page.$('#Customer_DateOfBirth');
+    await dobDob.click({
+        clickCount: 3
+    })
+    await dobDob.type(dob_dob);
+
+    var ssn_itin = process.env.ssn_itin;
+    const ssnItin = await page.$('#Customer_SSN');
+    await ssnItin.click({
+        clickCount: 3
+    })
+    await ssnItin.type(ssn_itin);
     
 
-//     var dob_dob = process.env.dob;
-//     const dobDob = await page.$('#BirthDate');
-//     await dobDob.click({
-//         clickCount: 3
-//     })
-//     await dobDob.type(dob_dob);
+    await Promise.all([
+        await page.click('#MoveNext'),
+        await   page.waitForNavigation()
+      ]);
     
-    
+      await page.waitForTimeout(3000);
 //     // var id_type=process.env.id_type;
 //     // const idType= await page.$('#IdType');
 //     // await idType.type(id_type);
 
 
+    var email_id=process.env.email_id;
+    const emailId= await page.$('#Customer_Email');
+    await emailId.type(email_id);
 
 
+    var mobile_number=process.env.mobile_number;
+    const mobileNumber= await page.$('#PrimaryPhone_Number');
+    await mobileNumber.type(mobile_number);
 
+    
+     await page.click("#ReviewOptOut", {clickCount:1}); //checkbox
+
+     await Promise.all([
+        await page.click('#MoveNext'),
+        await   page.waitForNavigation()
+      ]);
+
+     //next page er pore about you page
+
+     var street_address=process.env.street_address;
+     const streetAddress= await page.$('#Address_Line1');
+     await streetAddress.type(street_address);
+
+     var apt_number=process.env.apt_number;
+     const aptNumber= await page.$('#Address_Line2');
+     await aptNumber.type(apt_number);
+
+
+     
+     var city_name=process.env.city_name;
+     const cityName= await page.$('#Address_City');
+     await cityName.type(city_name);
+
+     // Address_State state dawa holo na
+
+    //  var state_name=process.env.city_name;
+    //  const cityName= await page.$('#Address_City');
+    //  await cityName.type(city_name);
+
+     var zip_code=process.env.zip_code;
+     const zipCode= await page.$('#Address_Zip');
+     await zipCode.type(zip_code);
+
+
+     var years_lived_in_address=process.env.years_lived_in_address;
+     const yearsLived= await page.$('#Residence_YearsAtAddress');
+     await yearsLived.type(years_lived_in_address);
+
+     var months_lived_in_address=0;
+     const monthsLived= await page.$('#Residence_MonthsAtAddress');
+     await monthsLived.type(months_lived_in_address);
+
+     await Promise.all([
+        await page.click('#MoveNext'),
+        await   page.waitForNavigation()
+      ]);
+
+      //next page
 
 
 //     var id_number=process.env.id_number;
@@ -93,38 +170,29 @@ const puppeteer = require('puppeteer');
 
     
 
-//     await Promise.all([
+    // await Promise.all([
    
-//         await page.click("#submit-button", {clickCount:1}), //first checkbox
-//         await   page.waitForNavigation()
+    //     await page.click("#am_button_next", {clickCount:1}), //first checkbox
+    //     await   page.waitForNavigation()
     
-//         // await page.click('a.btn.btn-lg.btn-primary');
-//         // await   page.waitForNavigation()
+    //     // await page.click('a.btn.btn-lg.btn-primary');
+    //     // await   page.waitForNavigation()
          
        
     
-//       ]);
+    //   ]);
 
+      //nextpage
+      
       
 
 //       // !next page
       
-//       var street_address=process.env.street_address;
-//       const streetAddress= await page.$('#StreetAddress');
-//       await streetAddress.type(street_address);
-
-//       var apt_number=process.env.apt_number;
-//       const aptNumber= await page.$('#AddressLineTwo');
-//       await aptNumber.type(apt_number);
 
 
-//       var zip_code=process.env.zip_code;
-//       const zipCode= await page.$('#ZipCode');
-//       await zipCode.type(zip_code);
 
-//       var city_name=process.env.city_name;
-//       const cityName= await page.$('#City');
-//       await cityName.type(city_name);
+
+
 
 
 //       //process.env.residence_type_id
@@ -139,18 +207,14 @@ const puppeteer = require('puppeteer');
 //     //   const confirmSsn= await page.$('#identification_number_confirmation');
 //     //   await confirmSsn.type(ssn_itin);
 
-//       var mobile_number=process.env.mobile_number;
-//       const mobileNumber= await page.$('#CellPhone');
-//       await mobileNumber.type(mobile_number);
+
       
 
 //     //   var mobile_number=process.env.mobile_number;
 //       const homePhoneNumber= await page.$('#HomePhone');
 //       await homePhoneNumber.type(mobile_number);
 
-//       var email_id=process.env.email_id;
-//       const emailId= await page.$('#Email');
-//       await emailId.type(email_id);
+
 
 //       const confirmEmailId= await page.$('#ConfirmEmail');
 //       await confirmEmailId.type(email_id);
@@ -401,8 +465,8 @@ const puppeteer = require('puppeteer');
 
     //   await page.click("#contract_applications_forms_contract_application_form_contract_details_attributes_consent_to_automated_communications", {clickCount:1});
 
-    await page.screenshot({
-        path: 'example.png'
-    });
+    // await page.screenshot({
+    //     path: 'example.png'
+    // });
     // await browser.close();
 })();
